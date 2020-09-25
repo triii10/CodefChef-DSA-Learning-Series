@@ -1,5 +1,7 @@
 <h1>C++ and Python solutions of the DSA Learning Series on CodeChef.</h1>
 
+<a href="https://www.codechef.com/LEARNDSA?order=desc&sortBy=successful_submissions">Contest Page</a>
+
 This repository is a collection of my personal solutions to the problems listed in the above mentioned series, but is publically available for reference. 
 The solutions are written to the best of my knowledge, but are not necessarily perfect (or optimal).
 
