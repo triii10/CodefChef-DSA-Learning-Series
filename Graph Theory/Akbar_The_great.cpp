@@ -79,6 +79,8 @@ inline std::ostream &operator<<(std::ostream &os, const std::map<T1, T2> &v)
 // <-- Main funtion -->
 // This is where the actual program is
 
+// Problem link : https://www.spoj.com/problems/AKBAR/
+
 int main(int argc, char *argv[])
 {
     // <-- Fast I/O -->
@@ -86,9 +88,62 @@ int main(int argc, char *argv[])
     cin.tie(0);
     int t = 1;
     // <-- Multiple test cases -->
-    // cin>>t;
+    cin>>t;
     while (t--) {
-        
+        int n, r, m;
+        cin>>n>>r>>m;
+
+        vector<int> used(n, 0);
+
+        vector<vector<int>>graph(n, vector<int>());
+        int i;
+        forl(i, 0, r) {
+            int a, b;
+            cin>>a>>b;
+            graph[a-1].push_back(b-1);
+            graph[b-1].push_back(a-1);
+        }
+        vector<pair<int, int>> soldiers;
+        forl(i, 0, m) {
+            int k, s;
+            cin>>k>>s;
+            soldiers.push_back({k-1, s});
+        }
+        string status = "Yes";
+        forl(i, 0, m) {
+
+            queue<pair<int, int>> q;
+            vector<bool> visited(n, false);
+            q.push({soldiers[i].first, soldiers[i].second});
+            used[soldiers[i].first]++;
+            visited[soldiers[i].first] = true;
+
+            while(!q.empty()) {
+                pair<int, int> v = q.front();
+                q.pop();
+                if(used[v.first] > 1) {
+                    status = "No";
+                    break;
+                }
+                if(v.second <= 0) {
+                    break;
+                }
+                
+                for(int u : graph[v.first]) {
+                    // if(!visited[u]) {
+                        used[u]++;
+                        q.push({u, v.second-1});
+                    // }
+                }
+            }
+        }
+        // cout<<used;
+        // for(int i: used)
+        //     if(i < 1) {
+        //         status = "No";
+        //         break;
+        //     }
+        cout<<status;
         cout<<'\n';
     }
     return 0;

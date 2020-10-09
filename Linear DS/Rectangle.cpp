@@ -110,7 +110,7 @@ int main(int argc, char *argv[])
         forl(i, 0, points.size()-1) {
             int j, min_y = 500;
             forl(j, i+1, points.size()) {
-                if(points[j].second < min_y) {
+                if(points[j].second < min_y && n > 5000) {
                     area = max(area, min_y*(long long)(points[j].first - points[i].first));
                     min_y = min(min_y, points[j].second);
                     if(min_y < points[i].second && n > 5000)
